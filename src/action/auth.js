@@ -16,7 +16,7 @@ export const logout = () => {
 }
 
 export const signup = (user) => (store) => {
-  return superagent.post(`${__API_URL__}/admin/signup`)
+  return superagent.post(`${__API_URL__}/signup`)
     .send(user)
     .withCredentials()
     .then(response => {
@@ -27,7 +27,7 @@ export const signup = (user) => (store) => {
 }
 
 export const login = (user) => (store) => {
-  return superagent.get(`${__API_URL__}/admin/login`)
+  return superagent.get(`${__API_URL__}/login`)
     .auth(user.email, user.password)
     .withCredentials()
     .then(response => {
