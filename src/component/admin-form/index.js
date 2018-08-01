@@ -7,6 +7,10 @@ const crypto = require('crypto')
 const buf = crypto.randomBytes(256).toString('hex')
 const CryptoJS = require('crypto-js')
 let encrypted = CryptoJS.AES.encrypt(buf, 'Secret Passphrase').toString()
+// let examplePass = 'hello'
+// console.log('examplePass: ', examplePass)
+// let exampleEncrypt = CryptoJS.AES.encrypt(buf, 'Secret Passphrase').toString()
+// console.log('exampleEncrypt: ', exampleEncrypt)
 
 let emptyState = {
   accountName: '',
@@ -107,7 +111,6 @@ class AdminForm extends React.Component {
           </div>
         )}
 
-        {util.renderIf(type !== 'login',
           <div className='form-field'>
             <input
               id='accountName'
@@ -117,11 +120,11 @@ class AdminForm extends React.Component {
               value={ this.state.accountName }
               onChange={ this.handleChange }
             />
-            <span className='warning'>*</span>
+            {util.renderIf(type === 'signup',
+              <span className='warning'>*</span>)}
             {util.renderIf(this.state.accountNameDirty,
               <label className='warning-label' htmlFor='accountName'>{ this.state.accountNameError }</label>)}
           </div>
-        )}
 
         <div className='form-field'>
           <input
